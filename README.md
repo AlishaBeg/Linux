@@ -1,1 +1,5 @@
-# Linux-
+# Linux
+
+```
+sudo get update
+```
