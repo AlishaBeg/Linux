@@ -52,6 +52,38 @@ systemctl start mariadb
 systemctl enable --now mariadb
 ```
 
+### HOW TO INSTALL PHP 
+
+It is command to install php it include php lanuage with apache server if it not install apache you are use next commapnd
+
+```
+apt-get install php
+```
+
+how to install apache server
+
+```
+apt-get install apache2
+```
+
+#### START APACHE SERVER
+
+```
+systemctl start apache2
+```
+
+#### STOP APACHE SERVER
+
+```
+systemctl stop apache2
+```
+
+#### RESTART APACHE SERVER
+
+```
+systemctl restart apache2
+```
+
 ### Service Restart
 
 ```
