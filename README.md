@@ -52,44 +52,6 @@ systemctl start mariadb
 systemctl enable --now mariadb
 ```
 
-### HOW TO INSTALL PHP 
-
-It is command to install php it include php lanuage with apache server if it not install apache you are use next commapnd
-
-```
-apt-get install php
-```
-
-how to install apache server
-
-```
-apt-get install apache2
-```
-
-#### START APACHE SERVER
-
-```
-systemctl start apache2
-```
-
-#### STOP APACHE SERVER
-
-```
-systemctl stop apache2
-```
-
-#### RESTART APACHE SERVER
-
-```
-systemctl restart apache2
-```
-
-### Service Restart
-
-```
-systemctl restart mariadb
-```
-
 ### SET or Rest MySQL admin password
 
 ```
@@ -133,6 +95,45 @@ mysql -u dbadmin -p -h 192.168.10.5
 |TCP Socket file | /run/mysqld/mysqld.sock|
 |MariaDB Config Files location | /etc/mysql/mariadb.conf.d|
 |MariaDB Server Configuration file | /etc/mysql/mariadb.conf.d/50-server.cnf|
+
+### HOW TO INSTALL PHP 
+
+It is command to install php it include php lanuage with apache server if it not install apache you are use next commapnd
+
+```
+apt-get install php
+```
+
+how to install apache server
+
+```
+apt-get install apache2
+```
+
+#### START APACHE SERVER
+
+```
+systemctl start apache2
+```
+
+#### STOP APACHE SERVER
+
+```
+systemctl stop apache2
+```
+
+#### RESTART APACHE SERVER
+
+```
+systemctl restart apache2
+```
+
+### Service Restart
+
+```
+systemctl restart mariadb
+```
+
 
 
 
