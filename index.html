@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<!--
+-   simpleUI.html : Designed | Develped by Mayank ( https://mastermayank.w3spaces.com )
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mayank</title>
+
+    <!--
+        ---------
+        | style |
+        ---------    
+    -->
+    <style>
+        
+        * {
+
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji";
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: normal;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        ::-webkit-scrollbar {
+            
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            
+            background: var(--black);
+        }
+
+        ::selection {
+            
+            color: var(--white);
+            background: var(--black);
+        }
+
+        ::marker {
+            
+            color: var(--black);
+        }
+
+        :root {
+            
+            --black: #10151b;
+            --white: #f5f6fa;
+            --light: #ced6e0;
+            --dark: #212529;
+            --primary:#007bff;
+            --secondary:#dc3545;
+            --tertiary:#28a745;
+        }
+
+        .darkTheme {
+            
+            --white: #10151b;
+            --black: #f5f6fa;
+            --dark: #ced6e0;
+            --light: #212529;
+        }
+
+        /* body css */
+
+        body {
+        
+            background: var(--white);
+        }
+
+        #land_container {
+
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+        }
+        
+        #content_frame {
+        
+            border-left: 0 dotted var(--dark);
+        }
+        
+        h1 {
+        
+            font-size:2rem;
+            line-height:5rem;
+        }
+        
+        h3 {
+        
+            line-height:3rem;
+        }
+
+        h4 {
+
+            font-weight: bold;
+        }
+        
+        h6 {
+
+            margin:10px 0;
+            padding:10px;
+            font-size:1rem;
+            background:var(--light);
+            border-radius:5px;
+        }
+
+        p {
+            
+            padding:5px;
+            font-size: 1rem;
+            line-height: 2rem;
+            word-spacing: 2px;
+            opacity: 0.8;
+        }
+        
+        b {
+           
+           font-weight:bolder;
+        }
+        
+        i {
+        
+            font-style:italic;
+        }
+
+        a {
+            
+            display:inline-block;
+            color:var(--primary);
+        }
+        
+        ul {
+            
+            list-style:circle;
+            padding:1rem;
+        }
+        
+        ul li {
+        
+            margin-left:10px;
+            line-height:2rem;
+        }
+        
+        ol {
+            
+            counter-reset: num 0;
+            list-style:none;
+            margin:1rem;
+            padding:0;
+        }
+        
+        ol > li {
+        
+            line-height:2rem;
+            padding:1rem;
+            border-left: 1px dotted var(--dark);            
+        }
+        
+        ol > li:before {
+        
+            content: counter(num);
+            counter-increment: num 1;
+            margin-left:-25px;
+            margin-right:1rem;
+            padding: 0 5px;
+            background:var(--white);
+            border:1px solid var(--primary);
+            border-radius:1rem;
+        }
+        
+        article {
+        
+            padding: 20px 0;
+        }
+
+        .alert {
+
+            display: inline-block;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        .success {
+
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .error {
+
+            background: rgba(220, 53, 69 , 0.1);
+        }
+        
+        .hide {
+        
+            display:none;
+        }
+
+        /* container */
+
+        #wrapper {
+
+            width: 100%;
+        }
+
+        .container {
+            
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        #content_frame {
+            
+            padding: 1rem;
+        }
+
+        /* aside */
+
+        #aside {
+
+            position: sticky;
+            top: 0;
+            display: block;
+            height: 100vh;
+            width: 100%;
+            padding: 5px;
+            background: var(--light);
+        }
+
+        #aside #searchBar {
+
+            caret-color:var(--primary);
+            display: block;
+            width: calc( 100% - 20px);
+            margin: 10px;
+            padding: 1rem;
+            font-size: 1rem;
+            background: var(--white);
+            border-radius: 10px;
+        }
+
+        #aside a {
+
+            display: block;
+            margin: 10px;
+            padding: 1rem;
+            color: var(--white);
+            background: var(--black);
+            border-radius: 10px;
+        }
+
+        #aside a:hover {
+
+            opacity: 0.7;
+        }
+
+        /* header */
+
+        #header {
+            
+            position: sticky;
+            z-index:5;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 1rem;
+            background: var(--white);
+        }
+
+        #toggle_btn {
+            
+            margin: 0;
+            padding: 5px;
+            font-size: 1.5rem;
+            background: transparent;
+        }
+
+        #toggle_btn:hover {
+            
+            opacity: 0.5;
+        }
+
+        #brandname {
+
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* footer */
+
+        #footer {
+        
+            margin: 1rem;
+            padding: 1rem;
+            font-weight: normal;
+            color: var(--dark);
+            border:3px solid var(--light);
+        }
+        
+        #footer a {
+
+            font-weight: bold;
+        }
+
+        /* @media css */
+        
+        @media screen and (max-width:600px) {
+
+            #land_container {
+                grid-template-columns: 1fr !important;
+            }
+            #aside {
+                width: 90%;
+                margin: auto;
+                position: absolute;
+                z-index: 100%;
+                left: 5%;
+                top: 10% !important;
+            }
+        }
+        
+        @media print {
+
+            #land_container {
+
+                grid-template-columns: 1fr !important;
+            }
+            #wrapper {
+            
+                width:100%;
+            }
+            #header,
+            #footer,
+            #aside {
+                
+                display:none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!--
+        ---------------------
+        | landing container |
+        ---------------------
+    -->
+    <main class="container" id="land_container">
+
+        <!--
+            -------------
+            |[ wrapper ]|
+            -------------
+        -->
+        <div id="wrapper">
+
+            <!--
+                ==================
+                [ header section ]
+                ==================
+            -->
+            <header id="header">
+
+                <div id="brandname"> linux@root </div>
+
+                <div id="toggle_btn"> &#9776; </div>
+
+            </header>
+
+            <!--
+                ===================
+                [ content section ]
+                ===================
+            -->
+            <section name="prastuti" id="content_frame">
+                <!--  -->
+                <article name="">
+
+                    <h3> # manual </h3>
+                    
+                    <p> <b>man</b> : display all detail & <b>whatis</b> use to show description  </p>
+                    
+                    <h6> man command_name </h6>
+
+                    <h6> whatis command_name </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+                
+                    <h3> # time </h3>
+                
+                    <p> <b>cal</b> is calender & <b>date</b> is use to display date and time </p>
+                    
+                    
+                    <h6>cal 2024 </h6>
+                    
+                    <p> display calender </p>
+                    
+                    <h6>cal 09 2024</h6>
+                    
+                    <p> month calender </p>
+                    
+                    <h6>date +"%Y-%m-%d"</h6>
+                    
+                    <p>YY-MM-DD</p>
+                    
+                    <h6>date +"%H:%M:%S"</h6>
+                    
+                    <p>HH:MM:SS</p>
+                    
+                    <h6>date +"%A %dth %B, %Y"</h6>
+                    
+                    <p> DAY date month year </p>
+                    
+                    <h6>sudo date --set="2003-09-25 14:30:00"</h6>
+                    
+                    <p>set date & time</p>
+                
+                </article>
+                <!--  -->
+                <article name="">
+                
+                    <h3> # time date control </h3>
+                    
+                    <p> <b> timedatectl </b> that use to set or get time zone </p>
+                
+                    <h6>timedatectl</h6>
+                    
+                    <p> verification </p>
+
+                    <h6>timedatectl list-timezone</h6>
+                    
+                    <p> timezone list </p>
+
+                    <h6>timedatectl set-timezone continent/city</h6>
+
+                    <p> set the time zone in our system </p>
+
+                    <ul>
+                        <li>Asia/Kolkata</li>
+                        <li>Asia/Chennai</li>
+                        <li>Asia/Mumbai</li>
+                        <li>Asia/Tokyo</li>
+                        <li>Asia/Jerusalem</li>
+                        <li>Asia/Omsk</li>
+                        <li>Europe/Moscow</li>
+                        <li>Africa/Cairo</li>
+                        <li>Africa/Johannesburg</li>
+                        <li>America/New_York</li>
+                        <li>America/Los_Angeles</li>
+                        <li>Brazil/Acre</li>
+                    </ul>
+                
+                </article>
+                                
+                <article name="">
+                
+                    <h3># service</h3>
+
+                    <p> service command use to control service in system </p>
+
+                    <h6>sudo service --status-all</h6>
+                    
+                    <p> show all system service status </p>
+
+                    <h6>sudo service service_name [ start | stop | status | reload ]</h6>
+                
+                    <p> control any service to <b>start stop reload</b> or show <b>status</b> </p>
+                
+                </article>
+                
+                <article name="">
+                
+                    <h3> # system control </h3>
+                
+                    <p> <b>systemctl</b> use to control system </p> 
+
+                    <h6>systemctl</h6>
+                    
+                    <p> all system control status show </p>
+
+                    <h6>systemctl --failed</h6>
+                    
+                    <p> failed system control </p>
+
+                    <h6>systemctl is-system-running</h6>
+
+                    <h6>systemctl list-units --type=service</h6>
+
+                    <h6>systemctl list-unit-files --type=service</h6>
+
+
+                    <h6>sudo systemctl [ start | stop | reload | restart ] service_name</h6>
+
+                    <h6>sudo systemctl [ status | enable | disable ] service_name</h6>
+
+                    <h6>sudo systemctl [ reboot | poweroff ]</h6>
+
+                
+                </article>
+                
+                <article name="">
+                
+                    <h3># system power</h3>
+
+                    <h6>poweroff</h6>
+
+                    <h6>reboot</h6>
+
+                    <h6>halt</h6>
+
+
+                    <h6>shutdown +2 "msg"</h6>
+                    
+                    <p> shutdown 2 minute with message</p>
+
+                    <h6>shutdown 17:00</h6>
+                    
+                    <p>shutdown on 5:00 PM </ps>
+
+                    <h6>shutdown now</h6>
+                    
+                    <p>poweroff</p>
+
+                    <h6>shutdown -h</h6>
+                    
+                    <p>halt</p>
+
+                    <h6>shutdown -r</h6>
+                    
+                    <p>reboot</p>
+
+                    <h6>shutdown -c</h6>
+                    
+                    <p>abort</p>
+                
+                </article>
+                
+                <article name="">
+                
+                    <h3># quit</h3>
+
+                    <h6>exit</h6>
+
+                    <h6>init 0</h6>
+                    
+                    <p> halt </p>
+
+                    <h6>init 1</h6>
+                    
+                    <p> single user mode CLI </p>
+
+                    <h6>init 3</h6>
+                    
+                    <p> multiple user mode CLI </p>
+
+                    <h6>init 5</h6>
+                    
+                    <p> multiple user mode GUI </p>
+
+                    <h6>init 6</h6>
+                    
+                    <p> reboot </p>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> #useradd </h3>
+
+                    <p> linux default assign home directory under /home/username_directory. You can specify different home with (-d) option </p>
+
+                    <h6> sudo useradd -d /home/userdir user_name </h6>
+
+                    <p> defautl shell is /bin/bash that we reset /bin/zsh </p>
+
+                    <h6> sudo useradd -s /bin/zsh user_name </h6>
+
+                    <p> add new group for user </p>
+
+                    <h6> sudo useradd -G group1,group2,... user_name </h6>
+
+                    <p> set expire date for user account </p>
+
+                    <h6> sudo useradd -e YYYY-MM-DD user_name </h6>
+
+                    <p> create a user with skeleton files default copy contents /etc/skel directory set new with -k </p>
+
+                    <h6> sudo useradd -k /path/to/skel user_name </h6>
+
+                    <p> create user with specific user information as comment </p>
+
+                    <h6> sudo useradd -c "comment" user_name </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> #passwd </h3>
+
+                    <p> The <b>passwd</b> command in linux is used to change the password for a user. </p>
+
+                    <h6> sudo passwd user_name </h6>
+
+                    <p> directly set user password </p>
+
+                    <h6> sudo passwd user_name <<< "new_password" </h6>
+
+                    <p> force expire protection </p>
+
+                    <h6> sudo passwd -e user_name </h6>
+
+                    <p> disable password </p>
+
+                    <h6> sudo passwd d user_name </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # usermod </h3>
+
+                    <p> The usermod command in linux is used to modify a user account setting like username, group, membership, directory, shell and more. </p>
+                    
+                    <p> change old username to new username </p>
+                    
+                    <h6> sudo usermod -l new_user_name old_user_name </h6>
+
+                    <p> set a new home directory for a user account </p>
+
+                    <h6> sudo usermod -d /home/username_directory username </h6>
+
+                    <p> set new login shell </p>
+
+                    <h6> sudo usermod -s /bin/shell user_name </h6>
+
+                    <p> lock user account </p>
+
+                    <h6> sudo usermod -L user_name </h6>
+
+                    <p> unlock user account </p>
+
+                    <h6> sudo usermod -U user_name </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # host </h3>
+
+                    <h6> hostname </h6>
+
+                    <p> show hostname </p>
+
+                    <h6> hostname -i </h6>
+
+                    <p> ip address associat with host </p>
+
+                    <h6> hostname -f </h6>
+
+                    <p> display Fully Qualified Domain Name <b>FQDN</b> </p>
+
+                    <h6> hostnamectl </h6>
+
+                    <p> present all host detial </p>
+
+                    <h6> sudo hostname set-hostname --transient new_host_name </h6>
+
+                    <p> create temporarily host until to reboot </p>
+
+                    <h6> sudo hostname set-hostname --static new_host_name </h6>
+
+                    <p> create permanent host </p>
+
+                    <h6> sudo hostname set-hostname --pretty new_host_name </h6>
+
+                    <p> create alisha name for host </p>
+
+                </article>
+                <!--  -->
+                <article name="">
+                
+                    <h3># network</h3>
+
+                    <p> <b>nmcli</b> wireless network client control </p>
+
+                    <h6>nmcli device wifi list</h6>
+                    
+                    <p>show wifi device list </p>
+
+                    <h6>nmcli device wifi connect "SSID" password "PASSWORD"</h6>
+
+                    <p> connect wifi connection with password </p>
+
+                    <h6>nmcli device status</h6>
+                    
+                    <p> device status </p>
+
+                    <h6>nmcli connection show</h6>
+                    
+                    <p> connection status </p>
+
+                    <h6>nmcli connection down id "SSID"</h6>
+                    
+                    <p>disconnect device </p>
+
+                    <h6> ip link </h6>
+
+                    <p> check out network connection </p>
+
+                    <h6> ifconfig -a </h6>
+
+                    <p> all network connection </p>
+
+                    <h6> sudo ip link set eth0 up </h6>
+
+                    <p> Bring the interface to connect </p>
+
+                    <h6> sudo dhclint eht0 </h6>
+
+                    <p> establish dynamic host connection </p>
+
+                    <h6> ip addr show eth0 </h6>
+
+                    <p> verify the connection </p>
+                
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # change mode </h3>
+
+                    <p> <b> chmod u+x file_location </b> this command is enable user execute file permission & <b> chmod 644 file_location </b> this numerical command for user read + write group or other readonly file permission. </p>
+
+                    <h6> chmod [operation] file_location </h6>
+
+                    <h4> type </h4>
+                        
+                    <ul>
+                        <li> (<b>u</b>) : user </li>
+                        <li> (<b>g</b>) : group </li>
+                        <li> (<b>o</b>) : other </li>
+                        <li> (<b>a</b>) : all </li>
+                    </ul>
+                        
+                    <h4> permission </h4>
+                            
+                    <ul>
+                        <li> (<b> </b>) : none </li>
+                        <li> (<b>r</b>) : read </li>
+                        <li> (<b>w</b>) : write </li>
+                        <li> (<b>x</b>) : execute </li>
+                    </ul>
+                        
+                    <h4> case </h4>
+                        
+                    <ul>
+                        <li> (<b>+</b>) : enable </li>
+                        <li> (<b>-</b>) : disable </li>
+                        <li> (<b>=</b>) : set </li>
+                    </ul>
+
+                    <h4> numeric </h4>
+
+                    <ul>
+                        <li><b>0</b>: none</li>
+                        <li><b>1</b>: execute</li>
+                        <li><b>2</b>: write</li>
+                        <li><b>4</b>: read</li>
+                    </ul>
+                        
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # list </h3>
+
+                    <p> list of usb driver connection </p>
+                    
+                    <h6> lsusb </h6>
+
+                    <p> list of central processing unit information </p>
+                    
+                    <h6> lscpu </h6>
+                    
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # block list </h3>
+
+                    <p> list of block drive or partition </p>
+
+                    <h6> sudo lsblk </h6>
+
+                    <p> list of drive partition detail </p>
+
+                    <h6> sudo fdisk -l /dev/sdx1 </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # drive attachment </h3>
+
+                    <h4> mount </h4>
+
+                    <p>  </p>
+                    
+                    <h6> sudo mount /dev/sdnx /media/user/device_name </h6>
+
+                    <h4> umount </h4>
+
+                    <p> </p>
+
+                    <h6> sudo umount /dev/sdnx </h6>
+
+                    <h4> eject </h4>
+
+                    <p>  </p>
+
+                    <h6> sudo eject /dev/sdnx </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> #format drive </h3>
+
+                    <p> <b> wipefs </b> is command to format file system or drive | <b> -a </b> use to all partition </p>
+
+                    <h6> sudo wipefs -a /dev/sdx </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # shred </h3>
+
+                    <p> <b>shred</b> is command for erase data from drive </p>
+
+                    <h6> sudo shred -vzn 3 /dev/sdxn </h6>
+
+                    <h6> sudo shred -vzn 3 file_location </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # make file system </h3>
+
+                    <p> <b>mkfs</b> is use to define file system type of partition </p>
+
+                    <h6> sudo mkfs.exfat -n "label" /dev/sdxn </h6>
+
+                    <h6> sudo mkfs.vfat -n "label" /dev/sdxn </h6>
+
+                    <h6> sudo mkfs.ext4 -n "label" /dev/sdxn </h6>
+
+                    <h6> sudo mkfs.ntfs -n "label" /dev/sdxn </h6>
+
+                    <h4> make new techology file system </h4>
+
+                    <p> <b> mkntfs </b> is command to use make new techology file system that support by all system </p>
+
+                    <h6> mkntfs -Q -L "label" /dev/sdxn </h6>
+
+                </article>                 
+                <!--  -->
+                <article name="">
+
+                    <h3> # make swap </h3>
+
+                    <h6> sudo swapon /swapfile </h6>
+
+                    <h6> sudo swapoff /swapfile </h6>
+
+                    <h6> sudo mkswap /swapfile </h6>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # disk destroier </h3>
+
+                    <p> <b>dd</b> is command for use disk destorier </p>
+                    
+                    <h6> sudo dd if=linux.iso of=/dev/sdxn bs=4M status=progress </h6>
+                    
+                    <p> create boottable USB Drive </p>
+
+                    <h6> sudo dd if=/dev/zero of=/swapfile bs=1M count=(1024*4) status=progress </h6>
+
+                    <p> create swapfile from Drive </p>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # dpkg </h3>
+
+                    <h6> dpkg -l </h6>
+
+                    <p> package list </p>
+
+                    <h6> dpkg -s package_name </h6>
+
+                    <p> package size </p>
+
+                    <h6> sudo dpkg -i package_name </h6>
+
+                    <p> install package </p>
+
+                    <h6> sudo dpkg -r package_name </h6>
+
+                    <p> remove package </p>
+
+                    <h6> sudo dpkg -P package_name </h6>
+
+                    <p> purge package </p>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # abstract package tool </h3>
+
+                    <p> <b>apt</b> this is abstract package tool use to control package service </p>
+
+                    <h6> sudo apt-get update </h6>
+
+                    <p> update packages </p>
+
+                    <h6> sudo apt-get upgrade </h6>
+
+                    <p> upgrade package </p>
+
+                    <h6> sudo apt-get install package_name </h6>
+
+                    <p> install new packages </p>
+
+                    <h6> sudo apt-get purge package_name </h6>
+
+                    <p> remove new packages </p>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # install apacahe server </h3>
+
+                    <ol>
+                        <li> sudo apt-get install apache2 -y </li>
+                        <li> sudo systemctl status apcahe2 </li>
+                        <li> sudo systemctl [ enable | disable ] apache2 </li>
+                    </ol>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # install mysql database </h3>
+
+                    <ol>
+                        <li> sudo apt-get install mysql-server mysql-client -y </li>
+                        <li> sudo mysql_secure_installation </li>
+                        <li> sudo mysqladmin -u 'root' -h $(hostname) password 'password' </li>
+                        <li> sudo mysql -u root -p password </li>
+                    </ol>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # install Java Development Kit </h3>
+
+                    <ol>
+                        <li>sudo apt install openjdk-17-jdk</li>
+                    </ol>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # install VSCodium </h3>
+
+                    <ol>
+                        <li> sudo apt install ./codium*.deb </li>
+                    </ol>
+
+                </article>
+                <!--  -->
+                <article name="">
+
+                    <h3> # wget </h3>
+
+                    <h6> wget https://github.com/VSCodium/vscodium/release/latest/download/Codium*.deb </h6>
+
+                </article>
+                <!--  -->
+                <article name=""></article>
+                <!--  -->
+                <article name=""></article>
+                <!--  -->
+                <article name=""></article>
+                <!--  -->
+                <article name=""></article>
+                <!--  -->
+                <article name=""></article>
+                <!--  -->
+                <article name=""></article>
+                <!--  -->
+                <article name=""></article>
+                <!--  -->
+                <article name=""></article>
+                
+
+                <div class="alert success"> successful message </div>
+
+                <div class="alert error"> error message </div>
+
+            </section>
+
+            <!--
+                ==================
+                [ footer section ]
+                ==================
+            -->
+            <footer id="footer"> &copy; Developed | Design by <a href="https://mastermayank.w3spaces.com" target="_blank" title="Developer">Mayank</a> </footer>
+
+        </div>
+
+        <!--
+            -----------
+            |[ aside ]|
+            -----------
+        -->
+        <aside id="aside">
+
+            <input type="search" id="searchBar" placeholder="Search"/>
+
+            <a href="#" title="" class="link" id="theme"> theme </a>
+            
+            <a href="#" title="" class="link"> man </a>
+            
+            <a href="#" title="" class="link">  </a>
+            
+            <a href="#" title="" class="link">  </a>
+            
+            <a href="#" title="" class="link">  </a>
+
+        </aside>
+
+    </main>
+    <!-- 
+        -----------
+        | scripte |
+        -----------
+    -->
+    <script>
+
+        try {
+            // target
+
+            let land_container = document.getElementById('land_container')
+
+            let aside = document.getElementById('aside')
+
+            var isActive = true // default set enable
+
+            /* aside open function */
+
+            function aside_open() {
+                aside.style.display = `block`
+                land_container.style.gridTemplateColumns = `3fr 1fr`
+                isActive = true
+            }
+
+            /* aside close function */
+
+            function aside_close() {
+                aside.style.display = `none`
+                land_container.style.gridTemplateColumns = `1fr`
+                isActive = false
+            }
+
+            /*
+                ---------------------------------------------------------------------------------
+                } aside function : on click toggle button if isActive than close else open aside
+                ---------------------------------------------------------------------------------
+            */
+
+            document.getElementById('toggle_btn').onclick = () => (isActive) ? aside_close() : aside_open()
+
+            /*
+                ----------------------------------------------
+                | aside for each anchor on click close aside |
+                ----------------------------------------------
+            */
+
+            document.querySelectorAll('#aside > a').forEach(i => {
+                i.onclick = () => aside_close()
+            })
+
+            /*
+                ----------------------------------------
+                } theme change function to toggle class
+                ----------------------------------------
+            */ 
+
+            document.getElementById('theme').onclick = () => document.body.classList.toggle('darkTheme')
+
+            document.title = `MayankDevil`
+        }
+        catch (error) {
+            console.error(error.message)
+        }
+
+    </script>
+
+</body>
+
+</html>
+<!-- the end -->
